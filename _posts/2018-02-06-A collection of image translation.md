@@ -22,12 +22,12 @@ tags:
 - `Face-Age-cGAN`: [[Paper](https://arxiv.org/abs/1702.01983)]
 - `BicycleGAN`: [[Code](https://github.com/junyanz/BicycleGAN)] [[Tensorflow](https://github.com/gitlimlab/BicycleGAN-Tensorflow)]
 ## datasets
-### Paired
-some datasets can also be downloaded manually from the website or **automatically** using the following script:
+Please cite their papers if you use the data.
+### pix2pix Datasets
+Some datasets can also be downloaded manually from the website or **automatically** using the following script:
 ```python
 python download-dataset.py datasetname
 ```
-Please cite their papers if you use the data.
 - `facades`: 400 images from [CMP Facades dataset](http://cmp.felk.cvut.cz/~tylecr1/facade/). (31MB) 
 - `sketch`: http://mmlab.ie.cuhk.edu.hk/archive/cufsf/
 - `oil-chinese`: http://www.cs.mun.ca/~yz7241/dataset/
@@ -37,8 +37,7 @@ Please cite their papers if you use the data.
 - `maps`: 1096 training images scraped from Google Maps
 - `edges2shoes`: 50k training images from [UT Zappos50K dataset](http://vision.cs.utexas.edu/projects/finegrained/utzap50k). Edges are computed by [HED](https://github.com/s9xie/hed) edge detector + post-processing. [[Citation](datasets/bibtex/shoes.tex)]
 - `edges2handbags`: 137K Amazon Handbag images from [iGAN project](https://github.com/junyanz/iGAN). Edges are computed by [HED](https://github.com/s9xie/hed) edge detector + post-processing. [[Citation](datasets/bibtex/handbags.tex)]
-
-### Unpaired
+### CycleGAN Datasets
 - `facades`: 400 images from the [CMP Facades dataset](http://cmp.felk.cvut.cz/~tylecr1/facade). [[Citation](datasets/bibtex/facades.tex)]
 - `cityscapes`: 2975 images from the [Cityscapes training set](https://www.cityscapes-dataset.com). [[Citation](datasets/bibtex/cityscapes.tex)]
 - `maps`: 1096 training images scraped from Google Maps.
