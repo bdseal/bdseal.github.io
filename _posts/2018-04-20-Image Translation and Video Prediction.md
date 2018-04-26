@@ -13,7 +13,7 @@ tags:
 # Image Translation and Video Prediction—From pix2pix to SAVP
 今天跟大家介绍一下`image translation`的一些方法。 
 
-## what is image translation?
+## What is image translation?
 
 这个任务基本上是远古时期`image analogy`的重新定义，另外作者针对这个问题提出了一个比较通用的框架，使得很多任务，比如`超分辨`、`风格迁移`等都可以被纳入到这个框架中来，而且可以取得相当不错的效果。
 
@@ -23,7 +23,7 @@ tags:
 
 ## pix2pix
 
-### cGAN损失函数:
+`cGAN损失函数`:
 
 ![](http://p7s93l2zo.bkt.clouddn.com/4.png)
 
@@ -34,9 +34,12 @@ tags:
 ![](http://p7s93l2zo.bkt.clouddn.com/7.png)
 
 
-### Generator: U-net 
+`Generator U-net`:
+
 输入和输出之间共享很多信息 如果使用普通的卷积神经网络会导致每一层承载这所有的信息，神经网络容易出错，可以实用-net来减负，这样网络只需要去学一个“差异”就好。在很多Low-leverl的图像处理任务比如图像上色、图像矫正等任务，u-net结构几乎已成为标配。
-### Discriminator: Patch D 
+
+`Discriminator Patch D`:
+
 与加入L1添加相适应，L1防止全局变形，那也让D去保证局部足够精准。无论生成的图像多大，将其切分为多个固定大小的Patch输入进D去判断。这也可以被理解为一种纹理或者风格损失函数。
 ![](http://p7s93l2zo.bkt.clouddn.com/10.png)
 
@@ -155,11 +158,13 @@ Coming Soon...
 
 这篇工作是`pix2pix`的升级版，仍然需要pair去输入，但为了引出后者，所以在这个部分介绍。
 
-BicycleGAN处理的是多对多的生成问题。
+BicycleGAN处理的是多对多的生成问题。结合两大生成式方法VAE和GAN。
 
-结合两大生成式方法VAE和GAN。
+设计上可以看到，BicycleGAN也采用了VAE-GAN的两种采样方式：1. 先验正态分布；2. encoded E(B)。从实验效果上看，这两种采样方式混合得到的结果更好。
+
 ![](http://p7s93l2zo.bkt.clouddn.com/1.png)
 
+*关于为什么会出现两个输出的问题...其实是一个，包括输入A和G其实也是同一个，只是有两种不同采样方式同时使用，为了表述方便，拆成了两部分。两种采样方式混合使用是沿用VAE-GAN的方法，只不过在它的示意图里画在了一起。后面SAVP也是这个道理*
 
 ## SAVP
 
@@ -170,7 +175,10 @@ BicycleGAN处理的是多对多的生成问题。
 - `diversity` 多样性，同时保证生成图像忠于原图
 
 这就意味修改一下其实可以用来做video prediction。
-![](http://p7s93l2zo.bkt.clouddn.com/savp.png)
+后面可以看到，修正主要在两方面：
+
+- `Adding recurrent layers within the generator;`
+- `Using a video-based discriminator to model dynamics.`
 
 Video Prediction可分为两大类方法：
 
@@ -179,17 +187,23 @@ Video Prediction可分为两大类方法：
 
 前者指的是`VAEs`,后者指的是`GANs`，这篇文章将两种方法结合起来，分取一字，则命名为`Stochastic Adversarial Video Prediction`
 
+![](http://p7s93l2zo.bkt.clouddn.com/savp.png)
+
 训练过程从左下角开始：
 
 1. 输入视频序列相邻两帧到`Encoder` *E*，得到`latent vector` *q* ，通过与先验分布*p(z)*取KL使得他俩的分布足够接近。 
-2. `Synthesized frame` *x_t-1* 与先验分布 *p(z)* 采样得到的 *z* 输入到`Generator ` *中合成`下一帧` *x_t*, `Discriminator` 去判断生成的 *x_t*是否足够真实；
-3. 同样的，*q*采样得到的 *z* 与 合成的前一帧输入到`Generator ` *中合成`下一帧` *x_t*，`Discriminator` 去判断生成的 *x_t*是否足够真实，同时 `合成帧`与`真实帧`取`L1 Loss`.
+2. `Synthesized frame` *x_t-1* 与先验分布 *p(z)* 采样得到的 *z* 输入到`Generator ` *G*中合成`下一帧` *x_t*, `Discriminator` 去判断生成的 *x_t*是否足够真实；
+3. 同样的，*q*采样得到的 *z* 与 合成的前一帧输入到`Generator ` *G*中合成`下一帧` *x_t*，`Discriminator` 去判断生成的 *x_t*是否足够真实，同时 `合成帧`与`真实帧`取`L1 Loss`.
 
 网络结构上，
 
-- `Generator`采用LSTM用来学习帧之间的空间变换，同时仿效`SNA`加入了`skip connection`;
+- `Generator`采用LSTM用来学习帧之间的空间变换(`CDNA`)，同时仿效`SNA`加入了`skip connection`;
 - `Discriminator`采用`SNGAN`，将其中的filters从2D变为3D;
 - `Encoder`结构与BicyleGAN中的相同，除了输入变为连续两帧Concat到一起作为输入。
+
+Generator结构，在`CDNA`(NIPS2016video prediction的一篇工作，Goodfellow二作，Github Star 30,000+)基础上加入Latent code，同时仿效`SNA`加入了`skip connection`.
+
+![](http://p7s93l2zo.bkt.clouddn.com/savp_generator.png)
 
 损失函数上，与BicycleGAN也很相像。
 
@@ -203,12 +217,10 @@ Video Prediction可分为两大类方法：
 
 ![](http://p7s93l2zo.bkt.clouddn.com/savp_gan.png)
 
-TODO: 为什么有两个xt和两个D
+# 结语
+可以看到这些论文中往往有多个组件，互为补充，互相促进，确实会有惊人的威力。但这也存在训练困难的问题，如何设计训练环节，是效果好坏更为重要的影响因素。在下一篇文章中，将介绍训练环节的设计和实现过程中的一些技巧。
 
-#结语
-可以看到这些论文中往往有多个组件，互为补充，互相促进，确实会有惊人的威力。但这也存在训练困难的问题，如何设计训练环节，是效果好坏更为重要的影响因素。在下一篇文章中，我将介绍训练环节的设计。
-
-参考：
+# 参考
 
 - 带你理解CycleGAN，并用TensorFlow轻松实现. [[Link](https://zhuanlan.zhihu.com/p/27145954)]
 - CycleGAN. [[Link](https://zhuanlan.zhihu.com/p/26995910)]
@@ -219,7 +231,7 @@ TODO: 为什么有两个xt和两个D
 - Generating Large Images from Latent Vectors. [[Link](blog.otoro.net/2016/04/01/generating-large-images-from-latent-vectors)]
 - 深度神经网络生成模型：从 GAN VAE 到 CVAE-GAN. [[Link](https://zhuanlan.zhihu.com/p/27966420)]
 - 三大深度学习生成模型：VAE、GAN及其变种.[[Link](geek.csdn.net/news/detail/230599)]
-- `SNA` - Ebert, F., Finn, C., Lee, A., Levine, S.: Self-supervised visual planning with temporal skip connections. In: Conference on Robot Learning (CoRL). (2017)
-- `SNGAN` - Miyato, T., Kataoka, T., Koyama, M., Yoshida, Y.: Spectral normalization for generative adversarial networks. In: International Conference on Learning Representations (ICLR). (2018)
-
-
+- `SNA`: Ebert, F., Finn, C., Lee, A., Levine, S.: Self-supervised visual planning with temporal skip connections. In: Conference on Robot Learning (CoRL). (2017)
+- `SNGAN`: Miyato, T., Kataoka, T., Koyama, M., Yoshida, Y.: Spectral normalization for generative adversarial networks. In: International Conference on Learning Representations (ICLR). (2018)
+- `CDNA`: Finn, C., Goodfellow, I., Levine, S.: Unsupervised learning for physical interaction through video prediction. In: Neural Information Processing Systems (NIPS).
+(2016)
