@@ -21,6 +21,8 @@ tags:
 - `GeneGAN`: [[Code](https://github.com/Prinsphield/GeneGAN)] [[Paper](https://arxiv.org/abs/1705.04932)]
 - `Face-Age-cGAN`: [[Paper](https://arxiv.org/abs/1702.01983)]
 - `BicycleGAN`: [[Code](https://github.com/junyanz/BicycleGAN)] [[Tensorflow](https://github.com/gitlimlab/BicycleGAN-Tensorflow)]
+- `VAE-GAN`: [[Code](http://github.com/andersbll/autoencoding_beyond_pixels)] [[Paper](https://arxiv.org/pdf/1611.07004.pdf)]
+- `cVAE-GAN`: [[Paper](https://arxiv.org/pdf/1703.10155.pdf)]
 ## datasets
 Please cite their papers if you use the data.
 ### pix2pix Datasets
