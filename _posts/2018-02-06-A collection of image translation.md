@@ -21,6 +21,7 @@ tags:
 - `GeneGAN`: [[Code](https://github.com/Prinsphield/GeneGAN)] [[Paper](https://arxiv.org/abs/1705.04932)]
 - `Face-Age-cGAN`: [[Paper](https://arxiv.org/abs/1702.01983)]
 - `BicycleGAN`: [[Code](https://github.com/junyanz/BicycleGAN)] [[Tensorflow](https://github.com/gitlimlab/BicycleGAN-Tensorflow)]
+- `StarGAN`: CVPR 2018. [[Code](https://github.com/yunjey/StarGAN)]  [[Paper](https://arxiv.org/abs/1711.09020)]
 - `VAE-GAN`: [[Code](http://github.com/andersbll/autoencoding_beyond_pixels)] [[Paper](https://arxiv.org/pdf/1611.07004.pdf)]
 - `cVAE-GAN`: [[Paper](https://arxiv.org/pdf/1703.10155.pdf)]
 ## datasets
@@ -48,6 +49,10 @@ python download-dataset.py datasetname
 - `summer2winter_yosemite`: 1273 summer Yosemite images and 854 winter Yosemite images were downloaded using Flickr API. See more details in our paper.
 - `monet2photo`, `vangogh2photo`, `ukiyoe2photo`, `cezanne2photo`: The art images were downloaded from [Wikiart](https://www.wikiart.org/). The real photos are downloaded from Flickr using the combination of the tags *landscape* and *landscapephotography*. The training set size of each class is Monet:1074, Cezanne:584, Van Gogh:401, Ukiyo-e:1433, Photographs:6853.
 - `iphone2dslr_flower`: both classes of images were downlaoded from Flickr. The training set size of each class is iPhone:1813, DSLR:3316.
+
+### Attribute Editing
+- `CelebA`
+- `RaFD`
 ## Reference：
 1. Isola P, Zhu J Y, Zhou T, et al. Image-to-image translation with conditional adversarial networks[J]. arXiv preprint arXiv:1611.07004, 2016.
 2. Zhu J Y, Park T, Isola P, et al. Unpaired image-to-image translation using cycle-consistent adversarial networks[J]. arXiv preprint arXiv:1703.10593, 2017.
@@ -59,3 +64,4 @@ python download-dataset.py datasetname
 8. Brock A, Lim T, Ritchie J M, et al. Neural photo editing with introspective adversarial networks[J]. arXiv preprint arXiv:1609.07093, 2016.
 9. Antipov G, Baccouche M, Dugelay J L. Face Aging With Conditional Generative Adversarial Networks[J]. arXiv preprint arXiv:1702.01983, 2017.
 10. Perarnau G, van de Weijer J, Raducanu B, et al. Invertible Conditional GANs for image editing[J]. arXiv preprint arXiv:1611.06355, 2016.
+11. StarGAN: Unified Generative Adversarial Networks for Multi-Domain Image-to-Image Translation. Computer Vision and Pattern Recognition (CVPR), 2018 (Oral)
