@@ -51,8 +51,9 @@ python download-dataset.py datasetname
 - `iphone2dslr_flower`: both classes of images were downlaoded from Flickr. The training set size of each class is iPhone:1813, DSLR:3316.
 
 ### Attribute Editing
-- `CelebA`
-- `RaFD`
+- `CelebA`. The CelebFaces Attributes (CelebA) dataset contains 202,599 face images of celebrities, each annotated with 40 binary attributes. size 178×218. hair color (black, blond, brown),gender (male/female), and age (young/old).
+- `RaFD`. The Radboud Faces Database (RaFD) consists of 4,824 images collected from 67 participants. Each participant makes eight facial expressions in three different gaze directions, which are captured from three different angles.
+
 ## Reference：
 1. Isola P, Zhu J Y, Zhou T, et al. Image-to-image translation with conditional adversarial networks[J]. arXiv preprint arXiv:1611.07004, 2016.
 2. Zhu J Y, Park T, Isola P, et al. Unpaired image-to-image translation using cycle-consistent adversarial networks[J]. arXiv preprint arXiv:1703.10593, 2017.

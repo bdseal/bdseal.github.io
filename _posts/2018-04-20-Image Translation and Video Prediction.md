@@ -160,6 +160,28 @@ Coming Soon...
 
 顺便说一句，CycleGAN也能通过对偶重构误差引导模型在翻译过程中保留图像固有属性，完成attribute manipulatation，但不如VAE based方法操作 latent vector更加直接可控。
 
+## StarGAN
+Pix2Pix模型解决了有Pair对数据的图像翻译问题；CycleGAN解决了Unpaired数据下的图像翻译问题。但无论是Pix2Pix还是CycleGAN，都是解决了一对一的问题，即一个领域到另一个领域的转换。缺陷也很明显，对于每一个领域转换，都需要重新训练一个模型去解决。比如更换头发颜色，更换表情，更换年龄等。像这样只能训练一对一的图像翻译模型，不仅低效，而且训练效果有限，不能利用其他域的数据来增大泛化能力。
+
+CVPR18的StarGAN提出了多领域转换用统一框架实现的算法，只需要训练一次，就可以做多个图像翻译任务。
+![](http://p7s93l2zo.bkt.clouddn.com/stargan.png)
+ 
+为了达成以上目标，作者对G和D的结构进行了调整：
+
+- 在G的输入中添加目标领域信息，即把图片翻译到哪个领域这个信息告诉生成模型。
+- D除了判断图片是否真实外，还要能判断图片属于哪个类别。
+- 除了上述两样以外，还需要保证图像翻译过程中图像内容要保存，只改变领域差异的那部分。图像重建可以完整这一部分，图像重建即将图像翻译从领域A翻译到领域B，再翻译回来，不会发生变化。
+
+同时模型为了支持多个数据集，需要增加mask来实现，即补位加0的办法。
+![](http://p7s93l2zo.bkt.clouddn.com/stargan_celeba.png)
+![](http://p7s93l2zo.bkt.clouddn.com/stargan_rafd.png)
+ 
+以下是我个人的理解。我们写程序时常用if-else对不同情况做不同处理。如果我们要做到只训练一个模型，就能够做到不同领域的图像翻译任务，其实也可以借助这个思想。StarGAN中G的输入c，就是if后面的条件。虽然是一次训练，但其实训练出来的是许多个模型，后面用里面哪一个，就取决于这个这个c。
+最后的效果不仅可以做到一次训练就能完成多个域的图像翻译任务，而且对单个任务的效果也很惊艳（也许是用了WGAN的缘故）。
+
+![](http://p7s93l2zo.bkt.clouddn.com/Fstargan_acial%20attribute%20transfer%20results%20on%20the%20CelebA%20dataset.png)
+![](http://p7s93l2zo.bkt.clouddn.com/stargan_Facial%20expression%20synthesis%20results%20on%20the%20RaFD%20dataset.png)
+
 ## BicycleGAN
 
 这篇工作是`pix2pix`的升级版，仍然需要pair去输入，但为了引出后者，所以在这个部分介绍。
