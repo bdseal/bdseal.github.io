@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Image Translation and Video Prediction
+title:      Image Translation Methods
 subtitle:   From pix2pix to SAVP
 date:       2018-04-25
 author:     Will Hsia
@@ -10,7 +10,7 @@ tags:
     - video prediction
     - image translation
 ---
-# Image Translation and Video Prediction—From pix2pix to SAVP
+# Image Translation Methods—From pix2pix to SAVP
 今天跟大家介绍一下`image translation`的一些方法。 
 
 ## What is image translation?
