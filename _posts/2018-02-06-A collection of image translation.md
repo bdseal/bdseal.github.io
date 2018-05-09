@@ -12,18 +12,25 @@ tags:
 
 ## A collection of Image Translation methods.
 - `pix2pix`: [[homepage](https://phillipi.github.io/pix2pix/)] [[Code](https://github.com/phillipi/pix2pix)]  [[Paper](https://arxiv.org/pdf/1611.07004.pdf)]
-- `CycleGAN`: [[homepage](https://junyanz.github.io/CycleGAN/)] [[CycleGAN](https://github.com/junyanz/CycleGAN)] [[pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)] [[Full Paper](https://arxiv.org/pdf/1703.10593.pdf)]
-- `DualGAN`: [[Code](https://github.com/duxingren14/DualGAN)] [[Paper](https://arxiv.org/abs/1704.02510)]
-- `DiscoGAN`: [[Code](https://github.com/carpedm20/DiscoGAN-pytorch)] [[Paper](https://arxiv.org/abs/1703.05192)]
+- `BicycleGAN`: [[Code](https://github.com/junyanz/BicycleGAN)] [[Tensorflow](https://github.com/gitlimlab/BicycleGAN-Tensorflow)]
+- `StarGAN`: CVPR 2018. [[Code](https://github.com/yunjey/StarGAN)]  [[Paper](https://arxiv.org/abs/1711.09020)]
+
+
+- `VAE-GAN`: [[Code](http://github.com/andersbll/autoencoding_beyond_pixels)] [[Paper](https://arxiv.org/pdf/1611.07004.pdf)]
+- `cVAE-GAN`: [[Paper](https://arxiv.org/pdf/1703.10155.pdf)]
 - `DTN`: [[Code](https://github.com/yunjey/domain-transfer-network)] [[Paper](https://arxiv.org/abs/1611.02200)]
 - `FaderNets`: [[Code](https://github.com/facebookresearch/FaderNetworks)] [[Paper](https://arxiv.org/abs/1706.00409)]
 - `IcGAN`: [[Code](https://github.com/Guim3/IcGAN)] [[Paper](https://arxiv.org/abs/1611.06355)]
 - `GeneGAN`: [[Code](https://github.com/Prinsphield/GeneGAN)] [[Paper](https://arxiv.org/abs/1705.04932)]
 - `Face-Age-cGAN`: [[Paper](https://arxiv.org/abs/1702.01983)]
-- `BicycleGAN`: [[Code](https://github.com/junyanz/BicycleGAN)] [[Tensorflow](https://github.com/gitlimlab/BicycleGAN-Tensorflow)]
-- `StarGAN`: CVPR 2018. [[Code](https://github.com/yunjey/StarGAN)]  [[Paper](https://arxiv.org/abs/1711.09020)]
-- `VAE-GAN`: [[Code](http://github.com/andersbll/autoencoding_beyond_pixels)] [[Paper](https://arxiv.org/pdf/1611.07004.pdf)]
-- `cVAE-GAN`: [[Paper](https://arxiv.org/pdf/1703.10155.pdf)]
+
+- `DAGAN`:  Deep Attention GAN
+- `UNIT`:[[Code](https://github.com/mingyuliutw/UNIT)]
+- `CycleGAN`: [[homepage](https://junyanz.github.io/CycleGAN/)] [[CycleGAN](https://github.com/junyanz/CycleGAN)] [[pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)] [[Full Paper](https://arxiv.org/pdf/1703.10593.pdf)]
+- `DualGAN`: [[Code](https://github.com/duxingren14/DualGAN)] [[Paper](https://arxiv.org/abs/1704.02510)]
+- `DiscoGAN`: [[Code](https://github.com/carpedm20/DiscoGAN-pytorch)] [[Paper](https://arxiv.org/abs/1703.05192)]
+
+
 ## datasets
 Please cite their papers if you use the data.
 ### pix2pix Datasets
